@@ -9,5 +9,31 @@
     <center>
         <h1>All events Index Page</h1>
     </center>
+    <ol>
+        {% for event in events %}
+            <li>
+                <b>{{event.eventName}}</b>
+                <br>
+                <ul>
+                    {% if event.eventDescription %}
+                        <li><b>Description: </b>{{event.eventDescription}}</li>
+                    {% endif %}
+                    {% if event.eventSpeaker.speakerName %}
+                        <li><b>Key Speaker: </b>{{event.eventSpeaker.speakerName}}</li>
+                    {% endif %}
+                    {% if event.eventStartTime and event.eventEndTime %}
+                        <li><b>Date and Time: </b>{{event.eventStartTime}} to {{event.eventEndTime}}</li>
+                    {% endif %}
+                    {% if event.eventVenue %}
+                        <li><b>Venue: </b>{{event.eventVenue}}</li>
+                    {% endif %}
+                    {% if event.eventURL %}
+                        <li><b>Link: </b>{{event.eventURL}}</li>
+                    {% endif %}
+                                       
+                </ul>
+            </li>
+        {% endfor %}
+    </ol>
 </body>
 </html>
