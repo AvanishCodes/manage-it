@@ -9,7 +9,12 @@ def index(request):
     })
 
 def event(request, event_id):
-    return render(request, "allEvents.html")
+    event = Event.objects.get(pk=event_id)
+    # Get the event and the participants of the event
+    instance = {
+        'event': event
+    }
+    return render(request, "events/displayEvent.html", instance)
 
 def register(request, event_id):
     return None

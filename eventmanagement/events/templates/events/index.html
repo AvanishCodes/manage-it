@@ -12,7 +12,7 @@
     <ol>
         {% for event in events %}
             <li>
-                <b>{{event.eventName}}</b>
+                <b><a href="{% url 'event' event.id %}">{{event.eventName}}</a></b>
                 <br>
                 <ul>
                     {% if event.eventDescription %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details of event {{event.eventName}}</title>
+</head>
+<body>
+    <center>
+        <h1><b><a href="{% url 'event' event.id %}">{{event.eventName}}</a></b></h1>
+    </center>
+    <br>
+    <ul>
+        {% if event.eventDescription %}
+            <li><b>Description: </b>{{event.eventDescription}}</li>
+        {% endif %}
+        {% if event.eventSpeaker.speakerName %}
+            <li><b>Key Speaker: </b>{{event.eventSpeaker.speakerName}}</li>
+        {% endif %}
+        {% if event.eventStartTime and event.eventEndTime %}
+            <li><b>Date and Time: </b>{{event.eventStartTime}} to {{event.eventEndTime}}</li>
+        {% endif %}
+        {% if event.eventVenue %}
+            <li><b>Venue: </b>{{event.eventVenue}}</li>
+        {% endif %}
+        {% if event.eventURL %}
+            <li><b>Link: </b>{{event.eventURL}}</li>
+        {% endif %}
+                            
+    </ul>
+</body>
+</html>
