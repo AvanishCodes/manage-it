@@ -19,17 +19,9 @@ class Organization(models.Model):
     logo = models.ImageField(blank=True)
     
 
-class Event(models.Model):
-    eventName = models.CharField(max_length=100, default='')                        # Name of the Event
-    eventDescription = models.TextField(max_length=1000, default='', blank=True)    # Description of the event
-    eventStartTime = models.DateTimeField(blank=True)                               # Start Time of the event
-    eventEndTime = models.DateTimeField(blank=True)                                 # End Time of the event
-    eventVenue = models.CharField(max_length=200, blank=True)                       # Venue of the event
-    eventURL = models.URLField(blank=True)                                          # URL of the event
-
 class Participant(models.Model):
     partName = models.CharField(max_length=100)                 # Name of the participant
-    partOrg = models.ForeignKey(Organization, blank=True)       # Organization of the participant
+    partOrg = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)       # Organization of the participant
     partCountry = models.CharField(max_length=100)              # Country of the participant
     partContact = models.BigIntegerField(blank=True)            # Contact Number of the participant
     partMail = models.EmailField(blank=True)                    # Email of the participant
@@ -39,7 +31,7 @@ class Organizer(models.Model):
     OrganizerName = models.CharField(max_length=100)                    # Name of the organizer
     OrganizerContactNumber = models.BigIntegerField(blank=True)         # Contact Number of the organizer
     OrganizerMail = models.EmailField(blank=True)                       # Email of the organizer
-    OrganizerOrganization = models.ForeignKey(Organization, blank=True) # Organization of the organizer
+    OrganizerOrganization = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True) # Organization of the organizer
     OrganizerPic = models.ImageField(blank=True)                        # Profile Picture of the organizer
 
 class Speaker(models.Model):
@@ -50,3 +42,14 @@ class Speaker(models.Model):
     speakerFB = models.URLField(blank=True)                 # FaceBook of the speaker
     speakerTwitter = models.URLField(blank=True)            # Twitter of the speaker
     speakerWebSite = models.URLField(blank=True)            # WebSite of the speaker
+
+
+class Event(models.Model):
+    eventName = models.CharField(max_length=100, default='')                            # Name of the Event
+    eventDescription = models.TextField(max_length=1000, default='', blank=True)        # Description of the event
+    eventSpeaker = models.ForeignKey(Speaker, on_delete=models.DO_NOTHING, blank=True)  # Speaker of the Event
+    eventStartTime = models.DateTimeField(blank=True)                                   # Start Time of the event
+    eventEndTime = models.DateTimeField(blank=True)                                     # End Time of the event
+    eventVenue = models.CharField(max_length=200, blank=True)                           # Venue of the event
+    eventURL = models.URLField(blank=True)                                              # URL of the event
+    
