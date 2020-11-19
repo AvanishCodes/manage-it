@@ -12,7 +12,7 @@ class person(models.Model):
 # Definition of an event
 class event(models.Model):
     eventName = models.CharField(max_length = 100)
-    eventDescription = models.CharField(max_length = 500)
+    eventDescription = models.TextField(max_length = 500)
     eventImage = models.ImageField()
     eventKeyPerson = models.ForeignKey(person, on_delete=models.CASCADE)
     eventStartTime = models.DateTimeField()

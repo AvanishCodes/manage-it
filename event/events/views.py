@@ -5,6 +5,9 @@ from django.template import loader
 
 # Create your views here.
 
+def index(request):
+    return 
+
 def events(request):
     allEvents = event.objects.all()
     template = loader.get_template('events/allEvents.html')
@@ -15,8 +18,14 @@ def events(request):
 
 def eventDetail(request, eventID):
     try:
-        event = event.objects.get(pk=eventID)
-    except event.DoesNotExist:
+        thisEvent = event.objects.get(pk = eventID)
+    except events.DoesNotExist:
         raise Http404("Event does not exist")
-
-    return render(request, 'events/sampleEvent.html', {'event': event})
+    template = loader.get_template('events/sampleEvent.html') 
+    context = {
+        'eventID': eventID
+    }
+    return render(request, "events/sampleEvent.html", {
+        'thisEvent': thisEvent,
+        'detail': thisEvent.eventDetail
+    })
