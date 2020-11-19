@@ -25,8 +25,16 @@
         {% endif %}
         {% if event.eventURL %}
             <li><b>Link: </b>{{event.eventURL}}</li>
-        {% endif %}
-                            
+        {% endif %}              
     </ul>
+
+    <a href="{% url 'register' event.id %}">Register</a>
+
+    <h3>Participants:</h3>
+    <ol>
+        {% for participant in partcicipants %}
+            <li>{{participant.partName}}</li>
+        {% endfor %}
+    </ol>
 </body>
 </html>

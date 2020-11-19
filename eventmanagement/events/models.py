@@ -17,6 +17,9 @@ class Organization(models.Model):
     pinCode = models.IntegerField(default=0)
     # Logo of the organization
     logo = models.ImageField(blank=True)
+
+    def __str__(self):
+        return f"{self.orgName}"
     
 # Organizer Model
 class Organizer(models.Model):
@@ -25,6 +28,8 @@ class Organizer(models.Model):
     OrganizerMail = models.EmailField(blank=True)                                                       # Email of the organizer
     OrganizerOrganization = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)    # Organization of the organizer
     OrganizerPic = models.ImageField(blank=True)                                                        # Profile Picture of the organizer
+    def __str__(self):
+        return f"{self.Organizer}, {self.OrganizerMail}"    
 
 # Speaker Model
 class Speaker(models.Model):
@@ -35,7 +40,8 @@ class Speaker(models.Model):
     speakerFB = models.URLField(blank=True)                 # FaceBook of the speaker
     speakerTwitter = models.URLField(blank=True)            # Twitter of the speaker
     speakerWebSite = models.URLField(blank=True)            # WebSite of the speaker
-
+    def __str__(self):
+        return f"{self.speakerName}"
 
 # Definition of an event
 class Event(models.Model):
@@ -46,7 +52,9 @@ class Event(models.Model):
     eventEndTime = models.DateTimeField(blank=True)                                     # End Time of the event
     eventVenue = models.CharField(max_length=200, blank=True)                           # Venue of the event
     eventURL = models.URLField(blank=True)                                              # URL of the event
-
+    eventPoster = models.ImageField(blank=True)
+    def __str__(self):  
+        return f"{self.eventName}, {self.eventStartTime} to {self.eventEndTime}"
 
 
 # Participant Model
@@ -58,3 +66,5 @@ class Participant(models.Model):
     partMail = models.EmailField(blank=True)                                                # Email of the participant
     partPic = models.ImageField(blank=True)                                                 # Profile Picture of the participant
     partEvents = models.ManyToManyField(Event, blank=True, related_name='participants')
+    def __str__(self):
+        return f"{self.partName}, {self.partOrg}"
