@@ -20,19 +20,19 @@ class Organization(models.Model):
     
 
 class Participant(models.Model):
-    partName = models.CharField(max_length=100)                 # Name of the participant
-    partOrg = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)       # Organization of the participant
-    partCountry = models.CharField(max_length=100)              # Country of the participant
-    partContact = models.BigIntegerField(blank=True)            # Contact Number of the participant
-    partMail = models.EmailField(blank=True)                    # Email of the participant
-    partPic = models.ImageField(blank=True)                     # Profile Picture of the participant
+    partName = models.CharField(max_length=100)                                             # Name of the participant
+    partOrg = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)      # Organization of the participant
+    partCountry = models.CharField(max_length=100)                                          # Country of the participant
+    partContact = models.BigIntegerField(blank=True)                                        # Contact Number of the participant
+    partMail = models.EmailField(blank=True)                                                # Email of the participant
+    partPic = models.ImageField(blank=True)                                                 # Profile Picture of the participant
 
 class Organizer(models.Model):
-    OrganizerName = models.CharField(max_length=100)                    # Name of the organizer
-    OrganizerContactNumber = models.BigIntegerField(blank=True)         # Contact Number of the organizer
-    OrganizerMail = models.EmailField(blank=True)                       # Email of the organizer
-    OrganizerOrganization = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True) # Organization of the organizer
-    OrganizerPic = models.ImageField(blank=True)                        # Profile Picture of the organizer
+    OrganizerName = models.CharField(max_length=100)                                                    # Name of the organizer
+    OrganizerContactNumber = models.BigIntegerField(blank=True)                                         # Contact Number of the organizer
+    OrganizerMail = models.EmailField(blank=True)                                                       # Email of the organizer
+    OrganizerOrganization = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)    # Organization of the organizer
+    OrganizerPic = models.ImageField(blank=True)                                                        # Profile Picture of the organizer
 
 class Speaker(models.Model):
     speakerName = models.CharField(max_length=100)          # Name of the speaker
