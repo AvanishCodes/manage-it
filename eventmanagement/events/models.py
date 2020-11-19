@@ -18,15 +18,7 @@ class Organization(models.Model):
     # Logo of the organization
     logo = models.ImageField(blank=True)
     
-
-class Participant(models.Model):
-    partName = models.CharField(max_length=100)                                             # Name of the participant
-    partOrg = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)      # Organization of the participant
-    partCountry = models.CharField(max_length=100)                                          # Country of the participant
-    partContact = models.BigIntegerField(blank=True)                                        # Contact Number of the participant
-    partMail = models.EmailField(blank=True)                                                # Email of the participant
-    partPic = models.ImageField(blank=True)                                                 # Profile Picture of the participant
-
+# Organizer Model
 class Organizer(models.Model):
     OrganizerName = models.CharField(max_length=100)                                                    # Name of the organizer
     OrganizerContactNumber = models.BigIntegerField(blank=True)                                         # Contact Number of the organizer
@@ -34,6 +26,7 @@ class Organizer(models.Model):
     OrganizerOrganization = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)    # Organization of the organizer
     OrganizerPic = models.ImageField(blank=True)                                                        # Profile Picture of the organizer
 
+# Speaker Model
 class Speaker(models.Model):
     speakerName = models.CharField(max_length=100)          # Name of the speaker
     speakerPic = models.ImageField(blank=True)              # Image of the speaker
@@ -44,6 +37,7 @@ class Speaker(models.Model):
     speakerWebSite = models.URLField(blank=True)            # WebSite of the speaker
 
 
+# Definition of an event
 class Event(models.Model):
     eventName = models.CharField(max_length=100, default='')                            # Name of the Event
     eventDescription = models.TextField(max_length=1000, default='', blank=True)        # Description of the event
@@ -52,4 +46,15 @@ class Event(models.Model):
     eventEndTime = models.DateTimeField(blank=True)                                     # End Time of the event
     eventVenue = models.CharField(max_length=200, blank=True)                           # Venue of the event
     eventURL = models.URLField(blank=True)                                              # URL of the event
-    
+
+
+
+# Participant Model
+class Participant(models.Model):
+    partName = models.CharField(max_length=100)                                             # Name of the participant
+    partOrg = models.ForeignKey(Organization, on_delete=models.DO_NOTHING, blank=True)      # Organization of the participant
+    partCountry = models.CharField(max_length=100)                                          # Country of the participant
+    partContact = models.BigIntegerField(blank=True)                                        # Contact Number of the participant
+    partMail = models.EmailField(blank=True)                                                # Email of the participant
+    partPic = models.ImageField(blank=True)                                                 # Profile Picture of the participant
+    partEvents = models.ManyToManyField(Event, blank=True, related_name='participants')
