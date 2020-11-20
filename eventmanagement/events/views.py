@@ -20,3 +20,29 @@ def event(request, event_id):
 
 def register(request, event_id):
     return render(request, "events/register.html")
+
+def participant(request, participant_id):
+    participant = Participant.objects.get(id = participant_id)
+    allEvents = []
+    for event in participant.partEvents.all():
+        allEvents.append(event.eventName)
+
+    instance = {
+        'participant': participant,
+        'allEvents': allEvents
+    }
+    return render(request, "participants/eventsParticipated.html", instance)
+
+# def participant(request, participant_id):
+#     participant = Participant.objects.get(id = participant_id)
+#     allEvents = []
+#     # event=participant.partEvents
+#     event=participant.event_set.all()
+#     for i in event:
+#         allEvents.append(i.eventName)
+
+#     instance = {
+#         'participant': participant,
+#         'allEvents': allEvents
+#     }
+#     return render(request, "participants/eventsParticipated.html", instance)
