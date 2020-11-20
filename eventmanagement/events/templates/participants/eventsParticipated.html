@@ -7,8 +7,8 @@
 </head>
 <body>
     <center>
-        <h1>Events Participated by <a href="{% url 'participation' participant.id %}">{{participant.partName}}</a></h1>
-</center>
+        <h1>Events Participated by <a href="{% url 'participation' participant.id %}">{{participant.partName}}</a></h1> 
+    </center>
     {% if participant.partEvents %}
         <ol>
             {% for event in allEvents %}
