@@ -12,7 +12,7 @@
     {% if participant.partEvents %}
         <ol>
             {% for event in allEvents %}
-                <li>event.eventName</li>   
+                <li><a href="{% url 'event' event.id %}">{{event.eventName}}</a></li>   
             {% endfor %}
         </ol>
     {% endif %}

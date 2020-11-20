@@ -23,10 +23,12 @@ def register(request, event_id):
 
 def participant(request, participant_id):
     participant = Participant.objects.get(id = participant_id)
-    allEvents = []
-    for event in participant.partEvents.all():
-        allEvents.append(event.eventName)
-
+    # allEvents = []
+    # for event in participant.partEvents.all():
+    #     allEvents.append(event.eventName)
+    #     print(event.eventName)
+    allEvents = participant.partEvents.all()
+    print(allEvents)
     instance = {
         'participant': participant,
         'allEvents': allEvents
@@ -36,8 +38,7 @@ def participant(request, participant_id):
 # def participant(request, participant_id):
 #     participant = Participant.objects.get(id = participant_id)
 #     allEvents = []
-#     # event=participant.partEvents
-#     event=participant.event_set.all()
+#     event=participant.partEvents
 #     for i in event:
 #         allEvents.append(i.eventName)
 
